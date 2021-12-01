@@ -11,6 +11,7 @@ rechteckhohe = 40
 yPosition_Rechteck = 400
 xPos = 950
 yPos = 100
+going = False
 
 
 
@@ -36,13 +37,13 @@ def draw():
     Stoppbutton()
     
     # Erde der Grösse 60x60 umkreist die Sonne
-    if mousePressed and mouseX >= xPos and mouseX <= xPos + rechteckbreite and mouseY >=yPosition_Rechteck and mouseY <= yPosition_Rechteck + rechteckhohe:
-        translate(weltraumbreite/2, weltraumhohe/2)
-        rotate(erdwinkel)
-        erde = loadImage("erde.png")
-        image(erde, -erddurchmesser/2, -(umlaufbahndurchmesser/2)-(erddurchmesser/2), erddurchmesser, erddurchmesser)
-    
-        erdwinkel -= PI/90
+    # if going:
+    translate(weltraumbreite/2, weltraumhohe/2)
+    rotate(erdwinkel)
+    erde = loadImage("erde.png")
+    image(erde, -erddurchmesser/2, -(umlaufbahndurchmesser/2)-(erddurchmesser/2), erddurchmesser, erddurchmesser)
+    if going == True and mouseX >= xPos and mouseX <= xPos + rechteckbreite and mouseY >=yPosition_Rechteck and mouseY <= yPosition_Rechteck + rechteckhohe:
+        erdwinkel = erdwinkel - PI/90
         resetMatrix()
         
         # Einblenden der Texte der vier Jahreszeiten entsprechend den Winkeln der Umlaufbahn
@@ -69,15 +70,15 @@ def draw():
         # Wenn Erdrotation eine Umdrehung erreicht hat, Variable auf 0 zurücksetzen
         if erdwinkel < -TWO_PI:
             erdwinkel = 0
-    
-    # Falls Start-Button nicht gedrückt, Bild an aktueller Position einfügen               
+            
+# Idde von Boolscher Algebra: https://www.youtube.com/watch?v=_NJqfZUQ3i4&ab_channel=TheCodingTrain        
+def mouseClicked():
+    global going
+    if going == True:
+         going = False
     else:
-        translate(weltraumbreite/2, weltraumhohe/2)
-        rotate(erdwinkel)
-        erde = loadImage("erde.png")
-        image(erde, -erddurchmesser/2, -(umlaufbahndurchmesser/2)-(erddurchmesser/2), erddurchmesser, erddurchmesser)
-          
-          
+        going = True
+        
 # Defintion der Erdumlaufbahn         
 def Erdrevolution():
     noFill()
@@ -96,5 +97,3 @@ def Stoppbutton():
 def TextJahreszeiten():
     textSize(20) #Textgrösse
     fill(255,255,255) #Text ausfüllen
-    
-    
