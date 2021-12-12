@@ -26,7 +26,7 @@ def setup():
     
 def draw():
     global erdwinkel
-    background(0, 0, 0)
+    background(0, 0, 0) # Zeigt nur aktuelle Erdkugel
     
     # Hintergrundbild laden mit geteiltem Bildschirm und Sonne der Grösse 100x100
     weltraum = loadImage("weltraum.jpg")
@@ -43,16 +43,16 @@ def draw():
     # Stopp-, Startbutton einfügen
     Stoppbutton()
 
-    # Schieberegler einfügen
+    # Schieberegler von Dozent Simon Hefti einfügen 
     draw_ruler(xPos, yPosition_Rechteck-80 , 200)
     textAlign(CENTER)
     fill(255)
     text("Geschwindigkeit Erde: " + str(pointerVal), text_mitte, yPosition_Rechteck-120)
 
     # Erde der Grösse 60x60 umkreist die Sonne
-    translate(weltraummitte_x, weltraummitte_y)
+    translate(weltraummitte_x, weltraummitte_y) # Koordinatenmittelpunkt wird von oben links zu neuen Koordinaten verschoben
     rotate(erdwinkel)
-    erde = loadImage("erde.png")
+    erde = loadImage("erde.png") # alles nach Funktion "rotate" wird rotiert
     image(erde, -erddurchmesser/2, -(umlaufbahndurchmesser/2)-(erddurchmesser/2), erddurchmesser, erddurchmesser)
             
     if going == True:
@@ -134,7 +134,7 @@ def Jahreszeiten():
     if erdwinkel < -TWO_PI:
         erdwinkel = 0
 
-# Definition Schieberegler
+# Definition Schieberegler von Dozent Simon Hefti
 def draw_ruler(objX, objY, objLength):
     global movingMode
     global pointerPos
@@ -181,7 +181,7 @@ def draw_ruler(objX, objY, objLength):
     
     # Eingestellter Wert anhand der Schieberposition ermitteln
     pointerVal = int(100 / float(objLength) * (pointerPos - objX))
-    print(pointerVal)
+    #print(pointerVal)
 
 
     
