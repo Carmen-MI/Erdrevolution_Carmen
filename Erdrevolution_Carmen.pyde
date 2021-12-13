@@ -1,4 +1,4 @@
-##Deklaration globaler Variablen
+# Deklaration globaler Variablen
 weltraumbreite = 900
 weltraumhohe = 600
 weltraummitte_x = weltraumbreite/2
