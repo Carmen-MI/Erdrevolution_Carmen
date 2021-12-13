@@ -56,7 +56,7 @@ def draw():
     image(erde, -erddurchmesser/2, -(umlaufbahndurchmesser/2)-(erddurchmesser/2), erddurchmesser, erddurchmesser)
             
     if going == True:
-        erdwinkel = erdwinkel - (pointerVal*PI/10809) # Änderung des Erdwinkels
+        erdwinkel = erdwinkel - (pointerVal*PI/1080) # Änderung des Erdwinkels
         Jahreszeiten()
     else:
         Jahreszeiten()            
